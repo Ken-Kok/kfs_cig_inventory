@@ -225,7 +225,7 @@ def main():
             salesPLUList.append(addPLUList[i])
             salesQuantityList.append(addQuantityList[i])
         #print(salesQuantityList)
-        salesPLUList,salesQuantityList = pyFunctions01.combineList(salesPLUList,salesQuantityList,3)
+        salesPLUList,salesQuantityList = pyFunctions01.combineList(salesPLUList,salesQuantityList,1)
         #print(salesQuantityList)
 
         # Create the file using these two lists
