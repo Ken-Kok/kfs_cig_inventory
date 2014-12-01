@@ -12,7 +12,6 @@
 ##    These lists will be emailed to a list defined in 'emailList.txt', in addition
 ##    to the total beginning file for each cashier.
 
-
 def main():
     dumpDirectory = '' # Where cashier files are dumped (generally /Downloads)
     tempDirectory = '' # Where processing can occur
@@ -25,6 +24,7 @@ def main():
     import pyFunctions01
     import smtplib
     import time
+    import send_mail
 
     # Move files to temporary home
     tempSource = os.listdir(dumpDirectory)
@@ -118,31 +118,33 @@ def main():
     for files in permSource:
         if files[0:3].isdigit(): # the first letters in the desired file are the year
             shutil.move(files,permDestination)
+
+    send_mail.send_mail(FROM, TO, SUBJECT, TEXT, FILE)
             
-    # send eMail
-    SERVER = "localhost"
-
-    FROM = "jonestown_cig@kfs.com"
-
-    # read list of emails, put in list named "emailNameList"
-
-    TO = emailNameList
-    date = time.strftime("Y,%m,%d")
-    SUBJECT = "Cig Inventory" + str(date)
-
-    TEXT = emailList
-    
-    message = """\
-    From: %s
-    To: %s
-    Subject: %s
-
-    %s
-    """ % (FROM, ", ".join(TO), SUBJECT, TEXT)
-
-    server = smtplib.SMTP(SERVER)
-    server.sendmail(FROM, TO, message)
-    server.quit()
+##    # send eMail
+##    SERVER = "localhost"
+##
+##    FROM = "jonestown_cig@kfs.com"
+##
+##    # read list of emails, put in list named "emailNameList"
+##
+##    TO = emailNameList
+##    date = time.strftime("Y,%m,%d")
+##    SUBJECT = "Cig Inventory" + str(date)
+##
+##    TEXT = emailList
+##    
+##    message = """\
+##    From: %s
+##    To: %s
+##    Subject: %s
+##
+##    %s
+##    """ % (FROM, ", ".join(TO), SUBJECT, TEXT)
+##
+##    server = smtplib.SMTP(SERVER)
+##    server.sendmail(FROM, TO, message)
+##    server.quit()
 
 main()
 
