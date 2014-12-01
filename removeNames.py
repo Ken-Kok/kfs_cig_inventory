@@ -1,6 +1,6 @@
 # Strip the names from an arbitrary file
 
-def main():
+def removeNames():
     import glob
     
     print("This program strips the Cigarette names from files with an arbitrary name.")
@@ -64,7 +64,6 @@ def main():
             currentFile.write(totalStr)
             currentFile.close()
 
-    input("Press 'Enter' to End")
-main()
+    #input("Press 'Enter' to End")
             
             

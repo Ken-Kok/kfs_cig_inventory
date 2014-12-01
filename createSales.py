@@ -4,15 +4,15 @@
 # one for each day. This will aid further processing in order to see
 # longitudinal sales figures universally, or by pack.
 
-def main():
+def createSales():
     import glob
     from datetime import date
     import pyFunctions01
 
-    print("This program assumes that it is dealing with any range of files with arbitrary names.")
-    print("It will then take only files with the word 'begin', and create sales files based on date.")
-    print()
-
+    #print("This program assumes that it is dealing with any range of files with arbitrary names.")
+    #print("It will then take only files with the word 'begin', and create sales files based on date.")
+    #print()
+    print("Available Sales Files:",end='\n')
     functionBeginAdd = '????,??,?? ??,??,?? [AB][ED][GD]??*.txt'
     beginAddFiles = glob.glob(functionBeginAdd)
 
@@ -239,7 +239,4 @@ def main():
         file.write(totalStr)
         file.close()
         print(todayFileName)
-        
-    
-main()
     
