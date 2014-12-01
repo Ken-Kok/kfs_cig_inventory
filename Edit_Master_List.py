@@ -16,9 +16,9 @@ def main():
             break
         
         nameName = input("What is the new/revised name of the PLU? ")
-        if nameName == 'END':
+        if 'END' == nameName:
             break
-        print("What is the price of the PLU?")
+        print('What is the price of the PLU?')
         price = input("If the PLU has an equiv PLU, enter the price of the equiv PLU (such as pack price if the PLU is a carton): ")
         if price == 'END':
             break
@@ -52,15 +52,14 @@ def main():
             counter = counter + 1
         if counter == len(data):
             data.append(str(pluName)+" "+str(nameName)+" "+str(price)+" "+str(equivPLU)+" "+str(equivQuantity)+str("\n"))
-##            if equivPLU == '0':
-##                data2.append(str(pluName)+" "+str(nameName)+" "+'0'+" "+str(price)+str("\n"))
-##        data2.append(priceSum)
         
     # Find inventory file, make two lists of PLUs and Quantities
 
         inventoryFile = open('Master Inventory.txt', 'r')
         inventory = inventoryFile.readlines()
         inventoryFile.close()
+        if len(inventory[-1].split()) == 2:
+            inventory.pop() # Because the last element in the list is the quantity/price info
 
         inventoryPLUList = []
         inventoryQuantityList = []

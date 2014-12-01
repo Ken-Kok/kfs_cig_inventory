@@ -141,6 +141,22 @@ def playWav(wavFile):
         stream.write(data)
         data = sound.readframes(chunk)
 
+def checkDigit(digit):
+    # Checks to see if the digit is numeric or a negative sign
+    global isDigit
+    numberList = ['0','1','2','3','4','5','6','7','8','9','-']
+    for i in range(len(digit)):
+        count = numberList.count(digit[i])
+        if count == 1:
+            # The value is in the list
+            isDigit = 1
+        if count == 0:
+            # The value is not in the list
+            isDigit = 0
+            break
+    return isDigit
+
+
 
 
 

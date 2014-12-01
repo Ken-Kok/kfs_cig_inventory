@@ -95,6 +95,10 @@ def createFile(pluList, nameList, quantityList, priceList, fileName):
     file.close()
 
 def main():
+    """
+
+    :rtype : object
+    """
     import pyFunctions01
     masterPLU = open('Master PLU List.txt', 'r')
     pluNameList = masterPLU.readlines()
@@ -137,6 +141,7 @@ def main():
     pluList = []
     quantityList = []
     newList = []
+
     while True:
         pluName = input("Type of scan the PLU (or 'END' to exit): ")
         if pluName == 'END':
@@ -148,6 +153,11 @@ def main():
                 continue
             print(masterName[pluIndex])
         quantity = input("Type the quantity: ")
+        isDigit = pyFunctions01.checkDigit(str(quantity))
+        if isDigit == 0: # The value is not a digit
+            playBuzzer('Buzzer.wav')
+            print("There was a non-numerical character in your quantity string")
+            continue
         if len(str(quantity)) > 4:
             print("The quantity is too large, please scan that pack again.")
             print("If you meant to enter more than 4 digits, please split")
@@ -198,7 +208,7 @@ def main():
     inventoryQuantityList = []
 
     inventoryTest = inventory[-1].split()
-    if len(inventoryTest) < 3:
+    if 3 > len(inventoryTest):
         for i in range(len(inventory)-1):
             inventorySplit = inventory[i].split()
             inventoryPLU = inventorySplit[0]
@@ -266,5 +276,7 @@ def main():
 
     createFile(inventoryPLUList, inventoryNameList, inventoryQuantityList, inventoryPriceList, 'Master Inventory.txt')
     print("The inventory file has been updated.")
-    input("Press 'Enter' to close")    
+    input("Press 'Enter' to close")
+
 main()
+

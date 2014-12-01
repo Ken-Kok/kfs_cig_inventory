@@ -152,6 +152,11 @@ def main():
                 continue
             print(masterName[pluIndex])
         quantity = input("Type the quantity: ")
+        isDigit = pyFunctions01.checkDigit(str(quantity))
+        if isDigit == 0: # The character contained a non-numerical entry
+            playBuzzer('Buzzer.wav')
+            print("The quantity contained a non-numerical entry")
+            continue
         if len(str(quantity)) > 4:
             playBuzzer('Buzzer.wav')
             print("The quantity is too large, please scan that pack again.")
